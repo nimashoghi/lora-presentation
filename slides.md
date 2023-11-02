@@ -2,7 +2,6 @@
 theme: academic
 transition: slide-left
 title: "LoRA: Low-Rank Adaptation of Large Language Models"
-download: true
 ---
 
 # [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)

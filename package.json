@@ -6,7 +6,7 @@
     "build": "slidev build",
     "dev": "slidev --open",
     "export": "slidev export",
-    "build-publish": "slidev build"
+    "build-publish": "slidev build --out docs --base /lora-presentation"
   },
   "dependencies": {
     "@slidev/cli": "^0.43.12",
