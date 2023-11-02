@@ -25,8 +25,15 @@ download: true
 
 # Existing Solutions
 
-- [Adapter Layers](http://arxiv.org/abs/1902.00751)
+- Freezing the backbone
+<!-- - [Adapter Layers](http://arxiv.org/abs/1902.00751) -->
 - [Prefix Tuning](https://arxiv.org/abs/2101.00190)
+
+---
+
+# [Adapter Layers: Parameter-Efficient Transfer Learning for NLP](http://arxiv.org/abs/1902.00751)
+
+![Adapter Layer](/adapter.png)
 
 ---
 
