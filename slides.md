@@ -38,6 +38,10 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 </div>
 
 
+<!--
+- In the LLM context, the efficiency concern of fine-tuning is even more pronounced.
+-->
+
 ---
 
 # Existing Solutions
@@ -52,12 +56,21 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 # [Adapter Layers: Parameter-Efficient Transfer Learning for NLP](http://arxiv.org/abs/1902.00751)
 
 - Adapters are new modules added **between** layers of a pre-trained network.
+- Adapters are usually **much smaller** than the pre-trained network.
+- Adapters are initialized such that, at the beginning of fine-tuning, they **do not change** the pre-trained network's behavior.
+- During fine-tuning, only the adapters are trained.
+
+## Main Features
+1. Small number of parameters
+2. Near-identity initialization
 
 ---
 
 # [Adapter Layers: Parameter-Efficient Transfer Learning for NLP](http://arxiv.org/abs/1902.00751)
 
 ![Adapter Layer](/adapter.png)
+
+- Bottleneck architecture
 
 ---
 
