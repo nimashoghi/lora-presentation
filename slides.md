@@ -47,9 +47,18 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 # Existing Solutions
 
 - Freezing the backbone
-<!-- - [Adapter Layers](http://arxiv.org/abs/1902.00751) -->
-- [Prefix Tuning](https://arxiv.org/abs/2101.00190)
+- [Adapter Layers](http://arxiv.org/abs/1902.00751)
+- [Prefix Tuning](https://arxiv.org/abs/2101.00190) and [Prompt Tuning](https://arxiv.org/abs/2104.08691)
 
+---
+
+# Prefix/Prompt Tuning
+
+- Inspired by the success of prompting in GPT-3
+- A prefix/prompt is added to the input sequence before feeding it to the LLM
+- The prefix/prompt is trained on the task-specific data
+- The LLM is fine-tuned on the task-specific data
+- Only the prefix/prompt is trained
 
 ---
 
