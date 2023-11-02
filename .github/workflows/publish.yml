@@ -1,4 +1,7 @@
 name: Build and deploy slides
+permissions:
+    # This is required to deploy to GitHub Pages
+    id-token: write
 on:
     push:
         branches:
