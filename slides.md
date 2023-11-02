@@ -14,12 +14,28 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
-# Background: Fine-Tuning
+# Background: Transfer-Learning
 
----
+<img src="/transfer.png" class="h-64 mx-auto" />
 
-# Problem: Fine-Tuning is Expensive
+<div class="grid grid-cols-2">
+<div>
 
+## Feature-based Transfer
+- Pre-trained model is used as a **feature extractor**
+- Features are fed to a task-specific model
+- Only the task-specific model is trained
+</div>
+
+<div>
+
+## Fine-Tuning
+
+- Pre-trained model is used as an **initialization**
+- **All params** are trained on task-specific data
+- Better results compared to feature-based transfer, but more expensive.
+</div>
+</div>
 
 
 ---
@@ -30,6 +46,12 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 <!-- - [Adapter Layers](http://arxiv.org/abs/1902.00751) -->
 - [Prefix Tuning](https://arxiv.org/abs/2101.00190)
 
+
+---
+
+# [Adapter Layers: Parameter-Efficient Transfer Learning for NLP](http://arxiv.org/abs/1902.00751)
+
+- Adapters are new modules added **between** layers of a pre-trained network.
 
 ---
 
