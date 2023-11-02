@@ -1,7 +1,6 @@
 name: Build and deploy slides
-permissions:
-    # This is required to deploy to GitHub Pages
-    id-token: write
+# 'id-token: write' is required to deploy to GitHub Pages.
+permissions: write-all
 on:
     push:
         branches:
