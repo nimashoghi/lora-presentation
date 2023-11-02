@@ -2,7 +2,7 @@ name: Build and deploy slides
 on:
     push:
         branches:
-            - master
+            - main
 jobs:
     publish:
         runs-on: self-hosted
