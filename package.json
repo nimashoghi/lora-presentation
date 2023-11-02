@@ -3,10 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "slidev build --out dist --base /lora-presentation",
     "dev": "slidev --open",
-    "export": "slidev export",
-    "build-publish": "slidev build --out docs --base /lora-presentation"
+    "export": "slidev export"
   },
   "dependencies": {
     "@slidev/cli": "^0.43.12",

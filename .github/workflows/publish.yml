@@ -6,6 +6,9 @@ on:
 jobs:
     publish:
         runs-on: self-hosted
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
         env:
             BUILD_TYPE: production
         steps:
@@ -16,4 +19,12 @@ jobs:
             - uses: pnpm/action-setup@v2
               with:
                 version: 8
-            - run: pnpm build-publish
+            # Build the slides to /dist
+            - run: pnpm build
+            # Upload the built slides to the artifact store
+            - uses: actions/upload-pages-artifact@v2
+              with:
+                path: dist
+            # Deploy the slides to GitHub Pages
+            - uses: actions/deploy-pages@v2
+              id: deployment
