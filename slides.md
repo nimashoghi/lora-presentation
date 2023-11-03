@@ -89,6 +89,25 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
+# Follow Up Work: [The Versatile Language Model](https://arxiv.org/abs/2004.03829)
+
+<div class="grid grid-cols-2">
+
+<div>
+
+#### Differences
+- There is only one adapter layer per transformer block.
+- In addition, a **segment embedding** is added to the input sequence.
+</div>
+
+<div>
+<img src="/VersatileLM.png" alt="Versatile Language Model" class="h-100 mx-auto" />
+</div>
+</div>
+
+
+---
+
 # [Intrinsic Dimensionality Explains the Effectiveness of Language Model Fine-Tuning](https://arxiv.org/abs/2012.13255)
 
 - An objective function's **intrinsic dimensionality** describes the minimum dimension needed to solve the optimization problem it defines to some precision level.
