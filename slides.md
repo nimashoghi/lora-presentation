@@ -8,6 +8,12 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ## Presented by Nima Shoghi
 
+<br />
+
+### https://nima.sh/lora-presentation
+
+<img class="absolute top-0 left-0 m-2 b-4" src="https://api.qrserver.com/v1/create-qr-code/?size=125x125&data=https://nima.sh/lora-presentation&format=svg" />
+
 ---
 
 # Background: Large Language Models
