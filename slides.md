@@ -58,13 +58,35 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
-# Prefix/Prompt Tuning
+# [Prefix Tuning](https://arxiv.org/abs/2101.00190) and [Prompt Tuning](https://arxiv.org/abs/2104.08691)
 
-- Inspired by the success of prompting in GPT-3
-- A prefix/prompt is added to the input sequence before feeding it to the LLM
-- The prefix/prompt is trained on the task-specific data
-- The LLM is fine-tuned on the task-specific data
-- Only the prefix/prompt is trained
+<div class="grid grid-cols-2">
+
+<div>
+
+- Inspired by the success of prompting and prompt engineering.
+- The idea is to **add a prefix** to the input.
+    - This prefix isn't a "prompt" in the sense of a natural language prompt. It's a **soft** prefix.
+    - The prefix is **learned** during fine-tuning.
+- The rest of the backbone model is **frozen**, i.e., not trained.
+- In some ways, this approach tries to **learn a prompt** that is good for the task at hand.
+</div>
+
+<div>
+
+![Prefix Tuning](/PrefixTuning.png)
+
+</div>
+
+</div>
+
+<!--
+A good way to think about the idea of a soft prefix is:
+    - In Transformers, all words get converted to a vector representation (embedding).
+    - The "prefix" that's tuned here is a vector that gets added to the embedding of the first word.
+    - One way to think about this is that this soft prefix is some linear combination of all the words in the model's vocabulary, trained to be a good prefix.
+-->
+
 
 ---
 
