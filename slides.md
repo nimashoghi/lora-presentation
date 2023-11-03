@@ -105,6 +105,37 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 </div>
 </div>
 
+<!-- TODO: Maybe skip this slide -->
+
+---
+
+# Follow Up Work: [AdapterFusion](https://arxiv.org/abs/2005.00247)
+
+<div class="grid grid-cols-2">
+
+<div>
+
+- This tackles the **multi-task** fine-tuning scenario (i.e., we have multiple downstream tasks and we want to fine-tune on all of them at the same time).
+- Divides the scenario into two steps:
+    - **Knowledge Extraction**: Extracts task-specific knowledge from the pre-trained model.
+    - **Knowledge Composition**: Composes the task-specific knowledge (across all tasks) back into the representation of the pre-trained model.
+
+</div>
+
+<div>
+<img src="/AdapterFusion.png" alt="AdapterFusion" class="h-80 mx-auto" />
+</div>
+</div>
+
+<!--
+Example Scenario:
+    - We have a pre-trained LLM, e.g., GPT3.
+    - We want to fine-tune it on sentiment analysis, question answering, and summarization.
+    - Each of these tasks has its own separate training data.
+    - We fine-tune the LLM on all three tasks at the same time to get a multi-task model.
+    - The motivation is that, hopefully, the knowledge from multiple source tasks will help the model learn better and thus improve the performance on each task.
+-->
+
 
 ---
 
