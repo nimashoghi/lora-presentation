@@ -95,7 +95,7 @@ A good way to think about the idea of a soft prefix is:
 - Adapters are new modules added **between** layers of a pre-trained network.
 - Adapters are usually **much smaller** than the pre-trained network.
 - Adapters are initialized such that, at the beginning of fine-tuning, they **do not change** the pre-trained network's behavior.
-- During fine-tuning, only the adapters are trained.
+- During fine-tuning, **only the adapters are trained**.
 
 ## Main Features
 1. Small number of parameters
@@ -148,7 +148,6 @@ A good way to think about the idea of a soft prefix is:
 <img src="/AdapterFusion.png" alt="AdapterFusion" class="h-80 mx-auto" />
 </div>
 </div>
-
 <!--
 Example Scenario:
     - We have a pre-trained LLM, e.g., GPT3.
@@ -188,17 +187,37 @@ Papers to read
 
 ---
 
-# [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
+# [LoRA: Low-Rank Adaptation of LLMs](https://arxiv.org/abs/2106.09685)
 
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-12">
 
-<div>
+<div class="col-span-9">
 
-- LoRA is a method for **parameter-efficient** adaptation of large language models.
+- A method for **parameter-efficient** adaptation of LLMs, inspired by:
+    1. The success of **adapter layers**.
+    2. The idea that over-parametrized models reside on a **low intrinsic dimension**.
+- Learns a **low-rank projection** of **updates** to the model's parameters.
+- Concretely, for a given dense layer, $h = W_0 x$:
+    - **Traditional Adapter**: $h = W_0 x + {\Delta W}_{\text{Adapt}} x$.
+    - **LoRA**: $h = W_0 x + B A x$, (i.e., same as above, but ${\Delta W}_{\text{Adapt}} = B A$).
+- $A$ uses a random Gaussian initialization, and $B$ is initialized to zero.
+    - This means that at the beginning of training, ${\Delta W}_{\text{Adapt}} = B A = 0$ and the adapter layer has **near-identity** behavior.
+
 </div>
 
-<div>
+<div class="col-span-3">
 <img src="/LoRA.png" alt="LoRA" class="h-64 mx-auto" />
+
+<small class="text-xs">
+
+- $B$: Batch size; $S$: Sequence length; $H$: Hidden size, $r$: Low-rank projection size
+- $x \in (B, S, H)$: Input
+- $W_0 \in (H, H)$: Pre-trained weights
+- ${\Delta W}_{\text{Adapt}} \in (H, H)$: Traditional adapter weights
+- $B \in (H, r), A \in (r, H)$: LoRA low-rank projection weights
+
+</small>
+
 </div>
 </div>
 
