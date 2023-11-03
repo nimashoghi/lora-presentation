@@ -191,30 +191,31 @@ Papers to read
 
 <div class="grid grid-cols-12">
 
-<div class="col-span-9">
+<div class="col-span-8">
 
-- A method for **parameter-efficient** adaptation of LLMs, inspired by:
+- **Parameter-efficient** adaptation of LLMs, inspired by:
     1. The success of **adapter layers**.
     2. The idea that over-parametrized models reside on a **low intrinsic dimension**.
 - Learns a **low-rank projection** of **updates** to the model's parameters.
 - Concretely, for a given dense layer, $h = W_0 x$:
     - **Traditional Adapter**: $h = W_0 x + {\Delta W}_{\text{Adapt}} x$.
-    - **LoRA**: $h = W_0 x + B A x$, (i.e., same as above, but ${\Delta W}_{\text{Adapt}} = B A$).
-- $A$ uses a random Gaussian initialization, and $B$ is initialized to zero.
-    - This means that at the beginning of training, ${\Delta W}_{\text{Adapt}} = B A = 0$ and the adapter layer has **near-identity** behavior.
+    - **LoRA**: $h = W_0 x + B A x$ (i.e., same, but ${\Delta W}_{\text{Adapt}} = B A$).
+- $A$ uses a random Gaussian initialization, and $B$ is initialized to zero. This means that at the beginning of training, ${\Delta W}_{\text{Adapt}} = B A = 0$ and the adapter layer has **near-identity** behavior.
 
 </div>
 
-<div class="col-span-3">
+<div class="col-span-4">
 <img src="/LoRA.png" alt="LoRA" class="h-64 mx-auto" />
 
 <small class="text-xs">
 
-- $B$: Batch size; $S$: Sequence length; $H$: Hidden size, $r$: Low-rank projection size
-- $x \in (B, S, H)$: Input
-- $W_0 \in (H, H)$: Pre-trained weights
-- ${\Delta W}_{\text{Adapt}} \in (H, H)$: Traditional adapter weights
-- $B \in (H, r), A \in (r, H)$: LoRA low-rank projection weights
+###### Notation
+
+- $N$: Batch size; $S$: Sequence length; $D$: Hidden size, $r$: Low-rank projection size
+- $x \in (N, S, D)$: Input
+- $W_0 \in (D, D)$: Pre-trained weights
+- ${\Delta W}_{\text{Adapt}} \in (D, D)$: Traditional adapter weights
+- $B \in (D, r), A \in (r, D)$: LoRA low-rank projection weights
 
 </small>
 
@@ -224,7 +225,13 @@ Papers to read
 
 ---
 
-# "A Generalization of Full Fine-tuning"
+# LoRA: Cont.
+
+###### A Generalization of Full Fine-tuning
+
+###### No Additional Inference Latency
+- During inference (when deploying the model), we can **explicitly compute** and store $W = W_0 + B A$ and use it instead of $W_0$.
+- This means that we don't need to compute $B A$ at inference time, and thus there is no additional inference latency.
 
 ---
 
