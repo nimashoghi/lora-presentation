@@ -196,10 +196,10 @@ Papers to read
 - **Parameter-efficient** adaptation of LLMs, inspired by:
     1. The success of **adapter layers**.
     2. The idea that over-parametrized models reside on a **low intrinsic dimension**.
-- Learns a **low-rank projection** of **updates** to the model's parameters.
+- Learns a **low-rank projection** of **updates** to the model's **dense layers**.
 - Concretely, for a given dense layer, $h = W_0 x$:
-    - **Traditional Adapter**: $h = W_0 x + {\Delta W}_{\text{Adapt}} x$.
-    - **LoRA**: $h = W_0 x + B A x$ (i.e., same, but ${\Delta W}_{\text{Adapt}} = B A$).
+    - **Traditional Adapter**: $h = W_0 x + \psi_{\text{Adapt}}(x)$.
+    - **LoRA**: $h = W_0 x + B A x$ (i.e., same as above, but $\psi_{\text{Adapt}}(x) = {\Delta W} x = B A x$).
 - $A$ uses a random Gaussian initialization, and $B$ is initialized to zero. This means that at the beginning of training, ${\Delta W}_{\text{Adapt}} = B A = 0$ and the adapter layer has **near-identity** behavior.
 
 </div>
@@ -214,7 +214,8 @@ Papers to read
 - $N$: Batch size; $S$: Sequence length; $D$: Hidden size, $r$: Low-rank projection size
 - $x \in (N, S, D)$: Input
 - $W_0 \in (D, D)$: Pre-trained weights
-- ${\Delta W}_{\text{Adapt}} \in (D, D)$: Traditional adapter weights
+- $\psi_{\text{Adapt}}(x)$: Adapter layer
+- ${\Delta W}_{\text{Adapt}} \in (D, D)$: Adapter weights
 - $B \in (D, r), A \in (r, D)$: LoRA low-rank projection weights
 
 </small>
@@ -223,11 +224,17 @@ Papers to read
 </div>
 
 
+<!--
+- Note that LoRA restricts the adapter layer's placement to be after some **dense layer**. This is a major core difference between LoRA and adapters in general.
+-->
+
 ---
 
 # LoRA: Cont.
 
 ###### A Generalization of Full Fine-tuning
+- LoRA can be seen as a **generalization** of full fine-tuning.
+-
 
 ###### No Additional Inference Latency
 - During inference (when deploying the model), we can **explicitly compute** and store $W = W_0 + B A$ and use it instead of $W_0$.
