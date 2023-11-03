@@ -86,6 +86,7 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 # [Intrinsic Dimensionality Explains the Effectiveness of Language Model Fine-Tuning](https://arxiv.org/abs/2012.13255)
 
 - An objective function's **intrinsic dimensionality** describes the minimum dimension needed to solve the optimization problem it defines to some precision level.
+- In the context of pretrained language models, measuring intrinsic dimensional will tell us how many free parameters are required to closely approximate the optimization problem that is solved while fine-tuning for each end task.
 - The paper demonstrates that:
     - As the number of parameters in a pre-training model increases, the intrinsic dimension decreases.
     - Pre-training implicitly reduces the intrinsic dimension.
@@ -106,3 +107,28 @@ Papers to read
 - [Measuring the Intrinsic Dimension of Objective Landscapes](https://arxiv.org/abs/1804.08838)
 - [Intrinsic Dimensionality Explains the Effectiveness of Language Model Fine-Tuning](https://arxiv.org/abs/2012.13255)
  -->
+
+---
+
+# [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
+
+<div class="grid grid-cols-2">
+
+<div>
+
+- LoRA is a method for **parameter-efficient** adaptation of large language models.
+</div>
+
+<div>
+<img src="/LoRA.png" alt="LoRA" class="h-64 mx-auto" />
+</div>
+</div>
+
+
+---
+
+# "A Generalization of Full Fine-tuning"
+
+---
+
+# Results:
