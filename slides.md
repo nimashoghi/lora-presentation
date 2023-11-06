@@ -16,18 +16,28 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
+# BG: Autoregressive Language Modeling
+
+<!-- ![Autoregressive Language Modeling](/AutoregressiveLM.gif) -->
+<img src="/AutoregressiveLM.gif" alt="Autoregressive Language Modeling" />
+
+<!--
+For the purpose of this talk, I will focus on the autoregressive LMs and GPT architecture as the primary LLM, but the same ideas apply to other LLMs as well.
+
+**An autoregressive model predicts future values based on past values.** The way the autoregressive generative NLP model actually work is that after each token is produced, that token is added to the sequence of inputs. And that new sequence becomes the input to the model in its next step. For example, the user initializes the input as “recite the first law $”, where “$” is a special delimiter token. GPT model will generate the text autoregressively, conditioned on the user input.
+- Source: https://medium.com/@YanAIx/step-by-step-into-gpt-70bc4a5d8714
+
+- You can **pre-train** a language model on a large corpus of text, such as Wikipedia. This results in a model that can generate text that is similar to the text in the corpus.
+    - To do this, it must learn to **understand the structure of the language**.
+- You can also **fine-tune** it on a specific task, such as sentiment analysis. This is called **transfer learning**.
+ -->
+
+---
+
 # BG: Large Language Models & GPT
 
 <!-- ![GPT Architecture](/GPT-Architecture.png) -->
 <img src="/GPT-Architecture.png" alt="GPT Architecture" class="h-100 mx-auto" />
-
-<!--
-For the purpose of this talk, I will focus on the GPT architecture as the primary LLM, but the same ideas apply to other LLMs as well.
--->
-
----
-
-# BG: Autoregressive Language Modeling
 
 ---
 
