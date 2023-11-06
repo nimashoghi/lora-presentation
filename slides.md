@@ -136,9 +136,14 @@ $$
 
 # Existing Solutions
 
-- Freezing the backbone
-- [Adapter Layers](http://arxiv.org/abs/1902.00751)
+- Freezing the backbone and only fine-tuning the final prediction layer (**linear probing**)
 - [Prefix Tuning](https://arxiv.org/abs/2101.00190) and [Prompt Tuning](https://arxiv.org/abs/2104.08691)
+- [Adapter Layers](http://arxiv.org/abs/1902.00751)
+- [LoRA](https://arxiv.org/abs/2106.09685)
+
+<!--
+- Linear probing, a technique that freezes the backbone and only fine-tunes the final prediction layer, is a popular approach to fine-tuning LLMs. However, it exhibits poor performance on many tasks.
+-->
 
 ---
 
@@ -327,12 +332,13 @@ Papers to read
 ---
 
 # LoRA: A Generalization of Full Fine-tuning
-- LoRA can be seen as a **generalization** of full fine-tuning.
--
-
+- In **full fine-tuning**, we fine-tune all the parameters of the model.
+- One generalization of fine-tuning is **freezing the backbone** and only fine-tuning the final prediction layer (**linear probing**).
+- LoRA takes a step further and does not require the accumulated gradient update to have full-rank during adaptation (i.e., the update matrix can be low-rank).
+- If the LoRA rank $r$ is equal to the hidden size $D$, then **LoRA is equivalent to full fine-tuning**.
 
 <!--
-Personal take: LoRA is a much more thoughtful implementation of the same exact underlying motivation: Adapt the original weight matrices using less weights. In the case of LoRA, it's using the low-rank BA matrix formulation, whereas in the original adapter layer, it's a bottleneck architecture (which, if you squint your eyes and ignore bias weights, can be thought of as the same thing, i.e., h = B\sigma(Ax) in the original adapter layer vs h = BAx in LoRA).
+In other words, as we increase the number of trainable parameters, training LoRA roughly converges to training the original model, while adapter-based methods converges to an MLP and prefix-based methods to a model that cannot take long input sequences.
 -->
 
 
