@@ -41,7 +41,7 @@ For the purpose of this talk, I will focus on the autoregressive LMs and GPT arc
 
 ---
 
-# BG: Embedding & Final Linear Layers
+# BG: Embedding & Final Prediction Layers
 <div class="grid grid-cols-2">
 
 <div class="border-r-2 border-gray-300">
@@ -54,13 +54,36 @@ For the purpose of this talk, I will focus on the autoregressive LMs and GPT arc
 
 <div class="border-l-2 border-gray-300 pl-1">
 
-###### Final Linear Layer
+###### Final Prediction Layer
 
-<!-- ![Final Linear Layer](/Final-Linear-Layer.png)-->
-<img src="/Final-Linear-Layer.png" alt="Final Linear Layer" class="h-100 mx-auto" />
+<!-- ![Final Prediction Layer](/Final-Linear-Layer.png)-->
+<img src="/Final-Linear-Layer.png" alt="Final Prediction Layer" class="h-100 mx-auto" />
 </div>
 
 </div>
+
+<!-- display the softmax equation on the top right (absolute) -->
+<div class="absolute top-16 right-4 m-2">
+
+$$
+\sigma(\vec{z})_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
+$$
+
+</div>
+
+<!--
+
+## Embedding Layer:
+- The embedding layer converts each word to a vector representation. This is called a **word embedding**.
+- It does this by converting each word to a **one-hot vector** and multiplying it by a **learned weight matrix**.
+- The operation of multiplying a one-hot vector by a weight matrix is equivalent to **selecting a row** from the weight matrix.
+
+## Final Prediction Layer:
+- The final prediction layer is a **linear layer** that converts the output of the last transformer block to a vector of logits.
+- The logits are then converted to probabilities using a **softmax**.
+    - **Softmax** is a function that converts a vector of **logits** to a vector of probabilities that sum to 1.
+- In other words, the final linear + softmax computes the **probability distribution** of the next word in the sequence.
+-->
 
 ---
 
