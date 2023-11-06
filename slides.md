@@ -297,8 +297,8 @@ Papers to read
 - **Parameter-efficient** adaptation of LLMs, inspired by:
     1. The success of **adapter layers**.
     2. The idea that over-parametrized models reside on a **low intrinsic dimension**.
-- Learns a **low-rank projection** of **updates** to the model's **dense layers**.
-- Concretely, for a given dense layer, $h = W_0 x$:
+- Learns a **low-rank projection** of **updates** to the model's **weights** (i.e., dense layers with no bias).
+- Concretely, for a given weights, $h = W_0 x$:
     - **Traditional Adapter**: $h = W_0 x + \psi_{\text{Adapt}}(x)$.
     - **LoRA**: $h = W_0 x + B A x$ (i.e., same as above, but $\psi_{\text{Adapt}}(x) = {\Delta W} x = B A x$).
 - $A$ uses a random Gaussian initialization, and $B$ is initialized to zero. This means that at the beginning of training, ${\Delta W}_{\text{Adapt}} = B A = 0$ and the adapter layer has **near-identity** behavior.
@@ -421,3 +421,17 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 - $\Delta W$ has a stronger correlation with $W$ compared to a random matrix, indicating that $\Delta W$ amplifies some features that are already in $W$.
 - Instead of repeating the top singular directions of $W$, $\Delta W$ only amplifies directions that are not emphasized in $W$.
 - The amplification factor is rather huge: $21.5 \approx  6.91/0.32$ for $r = 4$. This suggests that the low-rank adaptation matrix potentially amplifies the important features for specific downstream tasks that were learned but not emphasized in the general pre-training model.
+
+---
+
+# Conclusion
+
+- LoRA is a parameter-efficient adaptation of LLMs, inspired by the **success of adapter layers** and the idea that **over-parametrized models reside on a low intrinsic dimension**.
+- LoRA learns a **low-rank projection** of updates to the model's weights.
+- LoRA **outperforms prefix/prompt-tuning and adapter layers** and is much more **computationally efficient** than full fine-tuning whie achieving competitive performance on many tasks.
+- Questions? Comments?
+
+<!--
+From the paper:
+> Fine-tuning enormous language models is prohibitively expensive in terms of the hardware required and the storage/switching cost for hosting independent instances for different tasks. We propose LoRA, an efficient adaptation strategy that neither  ntroduces inference latency nor reduces input sequence length while retaining high model quality. Importantly, it allows for quick task-switching when deployed as a service by sharing the vast majority of the model parameters. While we focused on Transformer language models, the proposed principles are generally applicable to any neural networks with dense layers.
+-->
