@@ -16,11 +16,45 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
-# Background: Large Language Models
+# BG: Large Language Models & GPT
+
+<!-- ![GPT Architecture](/GPT-Architecture.png) -->
+<img src="/GPT-Architecture.png" alt="GPT Architecture" class="h-100 mx-auto" />
+
+<!--
+For the purpose of this talk, I will focus on the GPT architecture as the primary LLM, but the same ideas apply to other LLMs as well.
+-->
 
 ---
 
-# Background: Transfer-Learning
+# BG: Autoregressive Language Modeling
+
+---
+
+# BG: Embedding & Final Linear Layers
+<div class="grid grid-cols-2">
+
+<div class="border-r-2 border-gray-300">
+
+###### Embedding Layer
+
+<!-- ![Word Embedding](/Word-Embedding.png) -->
+<img src="/Word-Embedding.png" alt="Word Embedding" class="h-100 mx-auto" />
+</div>
+
+<div class="border-l-2 border-gray-300 pl-1">
+
+###### Final Linear Layer
+
+<!-- ![Final Linear Layer](/Final-Linear-Layer.png)-->
+<img src="/Final-Linear-Layer.png" alt="Final Linear Layer" class="h-100 mx-auto" />
+</div>
+
+</div>
+
+---
+
+# BG: Transfer-Learning
 
 <img src="/transfer.png" class="h-64 mx-auto" />
 
