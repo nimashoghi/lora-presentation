@@ -281,19 +281,53 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 
 ---
 
-# Results:
+# Results: GPT-2 on the E2E NLG Challenge
 
-![E2E-NLG-GPT2](/E2E-NLG-GPT2.png)
-![GPT-3](/GPT-3.png)
+<!-- ![E2E-NLG-GPT2](/E2E-NLG-GPT2.png) -->
+<img src="/E2E-NLG-GPT2.png" alt="E2E-NLG-GPT2" class="h-108 mx-auto" />
+
+----
+# Results: GPT-3
+
+<div class="grid grid-rows-2">
+<div>
+<!-- ![GPT-3](/GPT-3.png) -->
+<img src="/GPT-3.png" alt="GPT-3" class="h-64 mx-auto" />
+</div>
+<div>
+<!-- ![GPT3-Plot](/GPT3-Plot.png) -->
+<img src="/GPT3-Plot.png" alt="GPT3-Plot" class="h-64 mx-auto" />
+</div>
+</div>
 
 ---
 
-# Results: Which Weight Matrices In Transformer Should We Apply Lora To?
+# Which Weight Matrices In Transformer Should We Apply Lora To?
 
-![GPT-3 Weight Matrix](/GPT-3-Weight-Matrix.png)
+<!-- ![GPT-3 Weight Matrix](/GPT-3-Weight-Matrix.png) -->
+<img src="/GPT-3-Weight-Matrix.png" alt="GPT-3 Weight Matrix" class="h-64 mx-auto" />
+
+###### Takeaways
+- Note that putting all the parameters in $\Delta W_q$ or $\Delta W_k$ results in significantly lower performance, while adapting both $W_q$ and $W_v$ yields the best result.
+- This suggests that even $r = 4$ captures enough information in $\Delta W$ such that it is preferable to adapt more weight matrices than adapting a single type of weights with a larger rank.
 
 ---
 
-# Results: What Is The Optimal Rank R For LoRA?
+# What Is The Optimal Rank R For LoRA?
 
 ![GPT-3 Rank](/GPT-3-Rank.png)
+
+###### Takeaways
+- LoRA already performs competitively with a very small $r$ (more so for ${W_q, W_v}$ than just $W_q$). This suggests the update matrix $\Delta W$ could have a very small "intrinsic rank".
+
+---
+
+# How Does $\Delta W$ Compare To $W$?
+
+<!-- ![GPT-3 Delta W](/GPT-3-Delta-W.png) -->
+<img src="/GPT-3-Delta-W.png" alt="GPT-3 Delta W" class="h-48 mx-auto" />
+
+###### Takeaways
+- $\Delta W$ has a stronger correlation with $W$ compared to a random matrix, indicating that $\Delta W$ amplifies some features that are already in $W$.
+- Instead of repeating the top singular directions of $W$, $\Delta W$ only amplifies directions that are not emphasized in $W$.
+- The amplification factor is rather huge: $21.5 \approx  6.91/0.32$ for $r = 4$. This suggests that the low-rank adaptation matrix potentially amplifies the important features for specific downstream tasks that were learned but not emphasized in the general pre-training model.
