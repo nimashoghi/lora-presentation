@@ -242,27 +242,58 @@ Papers to read
 
 ---
 
-# LoRA: Cont.
-
-###### A Generalization of Full Fine-tuning
+# LoRA: A Generalization of Full Fine-tuning
 - LoRA can be seen as a **generalization** of full fine-tuning.
 -
 
-###### No Additional Inference Latency
-- During inference (when deploying the model), we can **explicitly compute** and store $W = W_0 + B A$ and use it instead of $W_0$.
-- This means that we don't need to compute $B A$ at inference time, and thus there is no additional inference latency.
-![Inference Latency](/inference_latency.png)
 
 <!--
-Differences between LoRA and Adapter Layers:
+Personal take: LoRA is a much more thoughtful implementation of the same exact underlying motivation: Adapt the original weight matrices using less weights. In the case of LoRA, it's using the low-rank BA matrix formulation, whereas in the original adapter layer, it's a bottleneck architecture (which, if you squint your eyes and ignore bias weights, can be thought of as the same thing, i.e., h = B\sigma(Ax) in the original adapter layer vs h = BAx in LoRA).
+-->
 
-- The original method uses two Adapter layers: One after each FFN in the multi-head attention block, whereas LoRA places the adapter "layer" on the query and key projection matrices.
-- LoRA's adapter "layer" consists of a single matrix (BA), whereas the original adapter uses an MLP w/ a non-linearity.
-- Finally, because LoRA is just parametrizing the updates to the weight matrix and has no other architectural additions, during inference, we can just update the model to set W = W + BA and run it just like before.
 
+---
+
+# LoRA: No Additional Inference Latency
+
+- During inference (when deploying the model), we can **explicitly compute** and store $W = W_0 + B A$ and use it instead of $W_0$. This means that we don't need to compute $B A$ at inference time, and thus there is no additional inference latency compared to the original model.
+$$
+\begin{align}
+h &= W_0 x + B A x \\
+&= (W_0 + B A) x \\
+&= W x
+\end{align}
+$$
+
+<img src="/inference_latency.png" alt="Inference Latency" class="h-64 mx-auto mt--10" />
+
+---
+
+# LoRA: Differences from Adapter Layers
+
+- The original method uses two adapter layers, **one after each FFN in the multi-head attention block**. LoRA places the adapter "layer" on **the query and key projection matrices**.
+- LoRA's adapter "layer" consists of a **single low-rank matrix** ($BA$), whereas the original adapter uses a **two-layer MLP with a non-linearity**.
+- Finally, because LoRA is just parametrizing the updates to the weight matrix and has no other architectural additions, during inference, we can just update the model to set W = W + BA and run it as usual. This means that there is **no additional inference latency** compared to the original model.
+
+<!--
 Personal take: LoRA is a much more thoughtful implementation of the same exact underlying motivation: Adapt the original weight matrices using less weights. In the case of LoRA, it's using the low-rank BA matrix formulation, whereas in the original adapter layer, it's a bottleneck architecture (which, if you squint your eyes and ignore bias weights, can be thought of as the same thing, i.e., h = B\sigma(Ax) in the original adapter layer vs h = BAx in LoRA).
 -->
 
 ---
 
 # Results:
+
+![E2E-NLG-GPT2](/E2E-NLG-GPT2.png)
+![GPT-3](/GPT-3.png)
+
+---
+
+# Results: Which Weight Matrices In Transformer Should We Apply Lora To?
+
+![GPT-3 Weight Matrix](/GPT-3-Weight-Matrix.png)
+
+---
+
+# Results: What Is The Optimal Rank R For LoRA?
+
+![GPT-3 Rank](/GPT-3-Rank.png)
