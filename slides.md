@@ -6,8 +6,6 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 # [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
 
-## Presented by Nima Shoghi
-
 <br />
 
 ### https://nima.sh/lora-presentation
