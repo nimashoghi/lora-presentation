@@ -121,6 +121,14 @@ $$
 
 
 <!--
+- **Transfer learning** is a machine learning technique where a model pre-trained on one task is re-purposed on a second related task.
+    - In our case, the pre-trained model is a language model (e.g., GPT-2), and the second task is a downstream task, such as sentiment analysis.
+- **Feature-based transfer** is a transfer learning technique where the pre-trained model is used as a **feature extractor**. The features are then fed to a task-specific model, which is trained on the task-specific data.
+    - Refer back to the GPT diagram, take the embeddings right before the final prediction layer, and use them to **train a whole new model**. This is the feature-based transfer approach.
+- **Fine-tuning** is a transfer learning technique where the pre-trained model is used as an **initialization**. Then, all the parameters are trained on the task-specific data.
+    - Refer back to the GPT diagram and **replace the final prediction layer with a new prediction layer**. This is the fine-tuning approach.
+
+- Fine-tuning usually results in better performance compared to feature-based transfer, but it is more expensive.
 - In the LLM context, the efficiency concern of fine-tuning is even more pronounced.
 -->
 
