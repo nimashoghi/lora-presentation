@@ -39,6 +39,15 @@ For the purpose of this talk, I will focus on the autoregressive LMs and GPT arc
 <!-- ![GPT Architecture](/GPT-Architecture.png) -->
 <img src="/GPT-Architecture.png" alt="GPT Architecture" class="h-100 mx-auto" />
 
+<!--
+The GPT architecture takes the **decoder** part of the Transformer architecture, stacks it on top of itself, and adds a **language modeling head** on top of the last layer.
+
+- We begin with the **word embedding layer**, which converts each word to a vector representation.
+- The **positional encoding layer** adds information about the position of each word in the sequence.
+- The **transformer blocks**, stacked on top of each other, are the main part of the model which update the representation of each word based on the other words in the sequence.
+- The **final prediction layer** converts the output of the last transformer block to a **probability distribution** of the next word in the sequence.
+-->
+
 ---
 
 # BG: Embedding & Final Prediction Layers
