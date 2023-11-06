@@ -69,7 +69,7 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
     - This prefix isn't a "prompt" in the sense of a natural language prompt. It's a **soft** prefix.
     - The prefix is **learned** during fine-tuning.
 - The rest of the backbone model is **frozen**, i.e., not trained.
-- In some ways, this approach tries to **learn a prompt** that is good for the task at hand.
+- In a way, this approach tries to **learn a prompt** that is optimal for the task at hand.
 </div>
 
 <div>
@@ -97,6 +97,9 @@ A good way to think about the idea of a soft prefix is:
 - Adapters are initialized such that, at the beginning of fine-tuning, they **do not change** the pre-trained network's behavior.
 - During fine-tuning, **only the adapters are trained**.
 
+<br />
+<br />
+
 ## Main Features
 1. Small number of parameters
 2. Near-identity initialization
@@ -108,6 +111,10 @@ A good way to think about the idea of a soft prefix is:
 ![Adapter Layer](/adapter.png)
 
 - Bottleneck architecture
+
+<!--
+The original paper uses an MLP bottleneck architecture, but other architectures have been proposed since then.
+-->
 
 ---
 
@@ -127,7 +134,12 @@ A good way to think about the idea of a soft prefix is:
 </div>
 </div>
 
-<!-- TODO: Maybe skip this slide -->
+<!--
+TODO: Maybe skip this slide
+
+- Not that interesting of work.
+- Can be thought of as a combination of adapter layers and prefix tuning.
+-->
 
 ---
 
@@ -239,6 +251,17 @@ Papers to read
 ###### No Additional Inference Latency
 - During inference (when deploying the model), we can **explicitly compute** and store $W = W_0 + B A$ and use it instead of $W_0$.
 - This means that we don't need to compute $B A$ at inference time, and thus there is no additional inference latency.
+![Inference Latency](/inference_latency.png)
+
+<!--
+Differences between LoRA and Adapter Layers:
+
+- The original method uses two Adapter layers: One after each FFN in the multi-head attention block, whereas LoRA places the adapter "layer" on the query and key projection matrices.
+- LoRA's adapter "layer" consists of a single matrix (BA), whereas the original adapter uses an MLP w/ a non-linearity.
+- Finally, because LoRA is just parametrizing the updates to the weight matrix and has no other architectural additions, during inference, we can just update the model to set W = W + BA and run it just like before.
+
+Personal take: LoRA is a much more thoughtful implementation of the same exact underlying motivation: Adapt the original weight matrices using less weights. In the case of LoRA, it's using the low-rank BA matrix formulation, whereas in the original adapter layer, it's a bottleneck architecture (which, if you squint your eyes and ignore bias weights, can be thought of as the same thing, i.e., h = B\sigma(Ax) in the original adapter layer vs h = BAx in LoRA).
+-->
 
 ---
 
