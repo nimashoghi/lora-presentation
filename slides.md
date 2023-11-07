@@ -14,6 +14,23 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 ---
 
+# Agenda
+
+1. Background
+    1. Large Language Models (GPT)
+    2. Transfer Learning
+2. Previous Work
+    1. Prefix Tuning
+    2. Adapter Layers
+    3. Intrinsic Dimensionality
+3. LoRA
+    1. Motivation
+    2. Method
+    3. Results
+4. Conclusion
+
+---
+
 # BG: Autoregressive Language Modeling
 
 <!-- ![Autoregressive Language Modeling](/AutoregressiveLM.gif) -->
@@ -132,7 +149,7 @@ $$
 
 ---
 
-# Existing Solutions
+# Previous Work
 
 - Freezing the backbone and only fine-tuning the final prediction layer (**linear probing**)
 - [Prefix Tuning](https://arxiv.org/abs/2101.00190) and [Prompt Tuning](https://arxiv.org/abs/2104.08691)
