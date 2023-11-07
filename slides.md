@@ -13,11 +13,9 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 <img class="absolute top-0 left-0 m-2 b-4" src="https://api.qrserver.com/v1/create-qr-code/?size=125x125&data=https://nima.sh/lora-presentation&format=svg" />
 
 <!--
-A few weeks ago, we got a question about how realistic is it for us in academia to work with LLMs, and I immediately thought of this work.
+The paper is about a parameter-efficient transfer learning technique for LLMs. It's a very simple idea, but it's very effective and has a lot of interesting implications. Because it's so simple, I'm going to go over the paper in detail, and I'll also go over the context and background that led to this work, including some related work.
 
-The paper is about a parameter-efficient transfer learning technique for LLMs. It's a very simple idea, but it's very effective and has a lot of interesting implications.
-
-From my understanding, using QLoRA, we fine-tune LLMs like LLAMA on the type of hardware that we have at our disposal in academia (e.g., a single GPU).
+**Let's get the most exciting part of the talk out of the way first:** A few weeks ago, we got a question about how realistic is it for us in academia to work with LLMs, and I immediately thought of this work. From my understanding, using QLoRA, we can fine-tune LLMs like LLAMA on the type of hardware that we have at our disposal in academia (e.g., a single GPU).
 -->
 
 ---
@@ -43,13 +41,12 @@ From my understanding, using QLoRA, we fine-tune LLMs like LLAMA on the type of 
 # BG: Autoregressive Language Modeling
 
 <!-- ![Autoregressive Language Modeling](/AutoregressiveLM.gif) -->
-<img src="/AutoregressiveLM.gif" alt="Autoregressive Language Modeling" />
+<img src="/AutoregressiveLM.gif" class="mx-auto mt-25" alt="Autoregressive Language Modeling" />
 
 <!--
 For the purpose of this talk, I will focus on the autoregressive LMs and GPT architecture as the primary LLM, but the same ideas apply to other LLMs as well.
 
-**An autoregressive model predicts future values based on past values.** The way the autoregressive generative NLP model actually work is that after each token is produced, that token is added to the sequence of inputs. And that new sequence becomes the input to the model in its next step. For example, the user initializes the input as “recite the first law $”, where “$” is a special delimiter token. GPT model will generate the text autoregressively, conditioned on the user input.
-- Source: https://medium.com/@YanAIx/step-by-step-into-gpt-70bc4a5d8714
+**An autoregressive model predicts future values based on past values.** See figure for exmaple.
 
 - You can **pre-train** a language model on a large corpus of text, such as Wikipedia. This results in a model that can generate text that is similar to the text in the corpus.
     - To do this, it must learn to **understand the structure of the language**.
@@ -68,7 +65,7 @@ The GPT architecture takes the **decoder** part of the Transformer architecture,
 
 - We begin with the **word embedding layer**, which converts each word to a vector representation.
 - The **positional encoding layer** adds information about the position of each word in the sequence.
-- The **transformer blocks**, stacked on top of each other, are the main part of the model which update the representation of each word based on the other words in the sequence.
+- The **transformer blocks** update the representation of each word based on the other words in the sequence.
 - The **final prediction layer** converts the output of the last transformer block to a **probability distribution** of the next word in the sequence.
 -->
 
@@ -195,9 +192,9 @@ $$
 
 <!--
 A good way to think about the idea of a soft prefix is:
-    - In Transformers, all words get converted to a vector representation (embedding).
-    - The "prefix" that's tuned here is a vector that gets added to the embedding of the first word.
-    - One way to think about this is that this soft prefix is some linear combination of all the words in the model's vocabulary, trained to be a good prefix.
+- In Transformers, all words get converted to a vector representation (embedding).
+- The "prefix" that's tuned here is a vector that gets added to the embedding of the first word.
+- One way to think about this is that this soft prefix is some linear combination of all the words in the model's vocabulary, trained to be a good prefix.
 -->
 
 
@@ -205,9 +202,10 @@ A good way to think about the idea of a soft prefix is:
 
 # [Adapter Layers: Parameter-Efficient Transfer Learning for NLP](http://arxiv.org/abs/1902.00751)
 
-- Adapters are new mofles added **between** layers of a pre-trained network.
-- Adapters are usually **much smaller** than the pre-trained network.
-- Adapters are initialized such that, at the beginning of fine-tuning, they **do not change** the pre-trained network's behavior.
+- Adapters are new layers added **between** layers of a pre-trained network.
+- Given an input $h$ to a layer, the output of the layer is $h + \psi_{\text{Adapt}}(h)$, where $\psi_{\text{Adapt}}$ is the adapter layer. In other words, the adapter layer is a **residual layer**.
+- They are usually **much smaller** than the pre-trained network.
+- They are initialized such that, at the beginning of fine-tuning, they **do not change** the pre-trained network's behavior.
 - Fring fine-tuning, **only the adapters are trained**.
 
 <br />
@@ -275,11 +273,11 @@ TODO: Maybe skip this slide
 </div>
 <!--
 Example Scenario:
-    - We have a pre-trained LLM, e.g., GPT3.
-    - We want to fine-tune it on sentiment analysis, question answering, and summarization.
-    - Each of these tasks has its own separate training data.
-    - We fine-tune the LLM on all three tasks at the same time to get a multi-task model.
-    - The motivation is that, hopefully, the knowledge from multiple source tasks will help the model learn better and thus improve the performance on each task.
+- We have a pre-trained LLM, e.g., GPT3.
+- We want to fine-tune it on sentiment analysis, question answering, and summarization.
+- Each of these tasks has its own separate training data.
+- We fine-tune the LLM on all three tasks at the same time to get a multi-task model.
+- The motivation is that, hopefully, the knowledge from multiple source tasks will help the model learn better and thus improve the performance on each task.
 -->
 
 
@@ -442,7 +440,8 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 The E2E NLG Challenge is a task where the goal is to generate a natural language description of a restaurant based on a set of attributes. For example, given the attributes "name: The Eagle", "food: English", "area: riverside", "familyFriendly: yes", "near: The Rice Boat", the goal is to generate the sentence "The Eagle is a family-friendly English restaurant near The Rice Boat in the riverside area.".
 -->
 
-----
+---
+
 # Results: GPT-3 ($r=1$ for 4.7M; $r=8$ for 37.7M)
 
 <div class="grid grid-rows-2 mt--6">
