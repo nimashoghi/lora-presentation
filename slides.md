@@ -488,10 +488,12 @@ The goal is to generate the summary "A has a doctor appointment tomorrow at 4pm.
 
 # What Is The Optimal Rank $r$ For LoRA?
 
-![GPT-3 Rank](/GPT-3-Rank.png)
+<!-- ![GPT-3 Rank](/GPT-3-Rank.png) -->
+<img src="/GPT-3-Rank.png" alt="GPT-3 Rank" class="h-57 mx-auto" />
 
 ###### Takeaways
 - LoRA already performs competitively with a very small $r$ (more so for ${W_q, W_v}$ than just $W_q$). This suggests the update matrix $\Delta W$ could have a very small "intrinsic rank".
+- To put things into perspective, GPT-3's hidden size ($d_{\text{model}}$) is $12,288$. A full-rank weight has $12,288^2 = 150,994,944$ parameters. For $r = 4$, we only need $(4 \times 12,288) + (4 \times 12,288)  = 98,304$ parameters, which is a **$99.93\%$ reduction** in the number of parameters.
 
 ---
 
