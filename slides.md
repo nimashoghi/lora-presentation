@@ -508,6 +508,25 @@ The goal is to generate the summary "A has a doctor appointment tomorrow at 4pm.
 - Instead of repeating the top singular directions of $W$, $\Delta W$ only amplifies directions that are not emphasized in $W$.
 - The amplification factor is rather huge: $21.5 \approx  6.91/0.32$ for $r = 4$. This suggests that the low-rank adaptation matrix potentially amplifies the important features for specific downstream tasks that were learned but not emphasized in the general pre-training model.
 
+<!--
+The main goal here is to understand the relationship between the pre-trained weights W and the learned adaptation weights ΔW. Specifically, it tries to answer two questions:
+
+1. Does ΔW highly correlate with W? In other words, is ΔW mostly contained in the top singular directions of W?
+2. How "large" is ΔW compared to W? More specifically, if we project W onto the subspace spanned by ΔW, how big is the resulting matrix compared to ΔW itself?
+
+To do this, they compute the Frobenius norm of projections of W onto ΔW, W, and a random matrix. They compare the Frobenius norm using the top singular vectors from W_q, ΔW_q, and a random matrix for the following reasons:
+
+- **W_q**: This shows what the norm would be if ΔW_q contained the top/important directions of W_q. Since the norm is much larger than using ΔW_q, it indicates ΔW_q does not emphasize the same directions as W_q.
+- **Random matrix**: This acts as a baseline to show the norm if ΔW_q was completely uncorrelated with W_q. The very small norm indicates there is some correlation between ΔW_q and W_q.
+- **ΔW_q**: By comparing the norm using ΔW_q to the other two cases, it shows ΔW_q amplifies directions that are present but not emphasized in W_q. The large amplification factor suggests these directions are very important for the specific task.
+
+The conclusions are:
+1. ΔW amplifies directions that are present but not emphasized in W. It does not repeat the top directions of W.
+2. The amplification factor is very large - around 20x for r=4. This suggests ΔW contains directions that are very important for the specific downstream task, but were not emphasized during pre-training.
+3. The low rank of ΔW also suggests only a small number of directions are important for adapting to new tasks. This provides an explanation for why low-rank ΔW works well empirically.
+
+-->
+
 ---
 
 # Conclusion
