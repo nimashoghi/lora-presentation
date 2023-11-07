@@ -303,6 +303,28 @@ Papers to read
 
 ---
 
+# Intrinsic Dimensionality: Number of Parameters vs. Fine-Tuning Accuracy
+
+<!-- ![Intrinsic Dimensionality](/IntrinsicDimensionalityFig1.png) -->
+<img src="/IntrinsicDimensionalityFig1.png" alt="Intrinsic Dimensionality" class="h-96 mx-auto" />
+
+<!--
+The above figures shows the fine-tuning accuracy of BERT and RoBERTa on two different datasets, as a function of the number of parameters used during fine-tuning. As you can see, we hit a very reasonable accuracy with a very small number of parameters (e.g., 200 parameters for RoBERTa on the top plot).
+-->
+
+---
+
+# Intrinsic Dimensionality vs. Model Size
+
+<!-- ![Intrinsic Dimensionality](/IntrinsicDimensionalityFig2.png) -->
+<img src="/IntrinsicDimensionalityFig2.png" alt="Intrinsic Dimensionality" class="h-96 mx-auto" />
+
+<!--
+Takeaway: The larger the model, the lower the intrinsic dimensionality. This means that these very large LLMs are very efficient at compressing the information needed to solve a given task. Thus, they can be fine-tuned with a very small number of parameters.
+-->
+
+---
+
 # [LoRA: Low-Rank Adaptation of LLMs](https://arxiv.org/abs/2106.09685)
 
 <div class="grid grid-cols-12">
