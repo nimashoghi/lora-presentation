@@ -35,6 +35,7 @@ From my understanding, using QLoRA, we fine-tune LLMs like LLAMA on the type of 
     1. Motivation
     2. Method
     3. Results
+    4. QLoRA
 4. Conclusion
 
 ---
