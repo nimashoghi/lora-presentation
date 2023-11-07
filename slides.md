@@ -407,6 +407,10 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 <!-- ![E2E-NLG-GPT2](/E2E-NLG-GPT2.png) -->
 <img src="/E2E-NLG-GPT2.png" alt="E2E-NLG-GPT2" class="h-108 mx-auto" />
 
+<!--
+The E2E NLG Challenge is a task where the goal is to generate a natural language description of a restaurant based on a set of attributes. For example, given the attributes "name: The Eagle", "food: English", "area: riverside", "familyFriendly: yes", "near: The Rice Boat", the goal is to generate the sentence "The Eagle is a family-friendly English restaurant near The Rice Boat in the riverside area.".
+-->
+
 ----
 # Results: GPT-3
 
@@ -420,6 +424,32 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 <img src="/GPT3-Plot.png" alt="GPT3-Plot" class="h-64 mx-auto" />
 </div>
 </div>
+
+<!--
+## WikiSQL
+**WikiSQL** is a task where the goal is to answer a SQL query based on a table. For example, given the table below, the goal is to answer the question "What is the name of the team that plays in the city that the team named 'The Eagles' plays in?". The answer is "SELECT teamName FROM table WHERE city = (SELECT city FROM table WHERE teamName = 'The Eagles')".
+
+| teamName | city | state | stadiumName | capacity |
+|----------|------|-------|-------------|----------|
+| The Eagles | Philadelphia | Pennsylvania | Lincoln Financial Field | 68532 |
+| The Steelers | Pittsburgh | Pennsylvania | Heinz Field | 65050 |
+| The Patriots | Foxborough | Massachusetts | Gillette Stadium | 68756 |
+| The Giants | East Rutherford | New Jersey | MetLife Stadium | 82500 |
+
+
+## MNLI-m
+**MNLI-m** is a task where the goal is to predict whether a sentence is an entailment, contradiction, or neutral given a premise. For example, given the premise "A person on a horse jumps over a broken down airplane.", the goal is to predict that the sentence "A person is outdoors, on a horse." is an entailment, because it is likely that a person on a horse is outdoors.
+
+## SAMSum
+**SAMSum** is a task where the goal is to generate a summary of a conversation. For example, given the conversation:
+
+- A: i have a doctor appointment tomorrow at 4pm
+- B: ok
+- A: i need to go to the doctor
+- B: i have a doctor appointment tomorrow at 3pm
+
+The goal is to generate the summary "A has a doctor appointment tomorrow at 4pm. B has a doctor appointment tomorrow at 3pm.".
+-->
 
 ---
 
