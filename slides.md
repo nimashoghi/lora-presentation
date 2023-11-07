@@ -402,7 +402,7 @@ Personal take: LoRA is a much more thoughtful implementation of the same exact u
 
 ---
 
-# Results: GPT-2 on the E2E NLG Challenge
+# Results: GPT-2 on the E2E NLG ($r = 4$)
 
 <!-- ![E2E-NLG-GPT2](/E2E-NLG-GPT2.png) -->
 <img src="/E2E-NLG-GPT2.png" alt="E2E-NLG-GPT2" class="h-108 mx-auto" />
@@ -412,16 +412,16 @@ The E2E NLG Challenge is a task where the goal is to generate a natural language
 -->
 
 ----
-# Results: GPT-3
+# Results: GPT-3 ($r=1$ for 4.7M; $r=8$ for 37.7M)
 
-<div class="grid grid-rows-2">
+<div class="grid grid-rows-2 mt--6">
 <div>
 <!-- ![GPT-3](/GPT-3.png) -->
 <img src="/GPT-3.png" alt="GPT-3" class="h-64 mx-auto" />
 </div>
 <div>
 <!-- ![GPT3-Plot](/GPT3-Plot.png) -->
-<img src="/GPT3-Plot.png" alt="GPT3-Plot" class="h-64 mx-auto" />
+<img src="/GPT3-Plot.png" alt="GPT3-Plot" class="h-48 mx-auto" />
 </div>
 </div>
 
@@ -464,7 +464,7 @@ The goal is to generate the summary "A has a doctor appointment tomorrow at 4pm.
 
 ---
 
-# What Is The Optimal Rank R For LoRA?
+# What Is The Optimal Rank $r$ For LoRA?
 
 ![GPT-3 Rank](/GPT-3-Rank.png)
 
