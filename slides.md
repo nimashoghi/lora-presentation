@@ -529,6 +529,17 @@ The conclusions are:
 
 ---
 
+# Follow-up Work: [QLoRA](https://arxiv.org/abs/2305.14314)
+
+<!-- ![QLoRA](/QLoRA.png) -->
+<img src="/QLoRA.png" alt="QLoRA" class="h-86 mx-auto" />
+
+<!--
+High level idea: Combine quantization and LoRA to get a **massively efficient** model.
+-->
+
+---
+
 # Conclusion
 
 - LoRA is a parameter-efficient adaptation of LLMs, inspired by the **success of adapter layers** and the idea that **over-parametrized models reside on a low intrinsic dimension**.
