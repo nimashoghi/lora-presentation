@@ -12,6 +12,14 @@ title: "LoRA: Low-Rank Adaptation of Large Language Models"
 
 <img class="absolute top-0 left-0 m-2 b-4" src="https://api.qrserver.com/v1/create-qr-code/?size=125x125&data=https://nima.sh/lora-presentation&format=svg" />
 
+<!--
+A few weeks ago, we got a question about how realistic is it for us in academia to work with LLMs, and I immediately thought of this work.
+
+The paper is about a parameter-efficient transfer learning technique for LLMs. It's a very simple idea, but it's very effective and has a lot of interesting implications.
+
+From my understanding, using QLoRA, we fine-tune LLMs like LLAMA on the type of hardware that we have at our disposal in academia (e.g., a single GPU).
+-->
+
 ---
 
 # Agenda
