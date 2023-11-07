@@ -453,7 +453,7 @@ The goal is to generate the summary "A has a doctor appointment tomorrow at 4pm.
 
 ---
 
-# Which Weight Matrices In Transformer Should We Apply Lora To?
+# Which Weight Matrices In Transformer Should We Apply LoRA To?
 
 <!-- ![GPT-3 Weight Matrix](/GPT-3-Weight-Matrix.png) -->
 <img src="/GPT-3-Weight-Matrix.png" alt="GPT-3 Weight Matrix" class="h-64 mx-auto" />
